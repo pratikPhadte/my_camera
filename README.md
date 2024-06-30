@@ -1,12 +1,15 @@
 # ROS2 package to publish webcam/usbcam/ip_address stream as ROS2 topics
 
-Hello all, I have built this package to stream video footage from a webcam, USB camera, or an ip_address onto a ros2 topic, which you can use for openCV in your ros2 projects.
+Hello all, I have made this package to send video footage from a webcam, USB camera, or an ip_address onto a ros2 topic, which you can use for openCV in your ros2 projects. The main reason to create this package was to get video streaming from my phone on to an ip address and use that stream as ros2 topic. After searching for a while i could find 2 repositories which are really good but for ip_address streaming i could not find so i created this package. Its very simple and has 3 nodes.
+
+## Similar Libraries
+1. Opencv_cam - https://github.com/clydemcqueen/opencv_cam
+2. usb cam  - https://github.com/ros-drivers/usb_cam 
 
 ## Table of Contents
 
 - [Install](#install)
 - [Usage](#usage)
-- [License](#license)
 
 ## Install
 
@@ -22,7 +25,7 @@ clone the repo in the src folder
 ```sh
 $ git clone https://github.com/pratikPhadte/my_camera.git
 ```
-Go back to the workspace folder
+Go back to the workspace folder (ros2_ws/)
 ```sh
 $ cd ..
 ```
@@ -78,8 +81,3 @@ $ ros2 run rqt_image_view rqt_image_view
 ![image](https://github.com/pratikPhadte/my_camera/assets/55589461/efc694f6-4a7c-44c9-bd92-6c5256b1ca4f)
 
 
-
-
-## License
-
-[MIT](LICENSE) © Richard Littauer

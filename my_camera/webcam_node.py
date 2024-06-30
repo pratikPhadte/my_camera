@@ -8,7 +8,7 @@ class CameraNode(Node):
     def __init__(self):
         super().__init__('webcam_node')  # Initialize the Node with the name 'webcam_node'
         self.publisher_ = self.create_publisher(Image, 'webcam_image', 1)  # Create a publisher for the Image topic with queue size of 1
-        self.timer = self.create_timer(0.00001, self.timer_callback)  # Create a timer to call timer_callback every 0.033 seconds (30 FPS)
+        self.timer = self.create_timer(0.001, self.timer_callback)  # Create a timer to call timer_callback every 0.033 seconds (30 FPS)
         self.cap = cv2.VideoCapture(0)  # Open the default webcam
         #self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)  # Set the buffer size to 1 to minimize latency
         self.bridge = CvBridge()  # Initialize the CvBridge to convert between ROS and OpenCV images

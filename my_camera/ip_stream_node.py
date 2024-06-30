@@ -18,7 +18,7 @@ class CameraNode(Node):
         )
         
         # Create a publisher for the Image topic with the specified QoS profile
-        self.publisher_ = self.create_publisher(Image, 'camera_image', qos_profile)
+        self.publisher_ = self.create_publisher(Image, 'ip_stream_image', qos_profile)
         
         # Create a timer to call timer_callback every 0.033 seconds (approximately 30 FPS)
         self.timer = self.create_timer(0.001, self.timer_callback)

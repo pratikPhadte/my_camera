@@ -3,24 +3,16 @@ from rclpy.node import Node  # Import the Node class from ROS 2
 import cv2  # Import OpenCV for computer vision tasks
 from cv_bridge import CvBridge  # Import CvBridge to convert between ROS and OpenCV images
 from sensor_msgs.msg import Image  # Import the Image message type from sensor_msgs
-from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSHistoryPolicy  # Import QoS classes
 import argparse  # Import argparse for command-line arguments
 
 class CameraNode(Node):
     def __init__(self, ip):
         super().__init__('ip_stream_node')  # Initialize the Node with the name 'ip_stream_node'
         
-        # Create a QoS profile for the publisher
-        qos_profile = QoSProfile(
-            reliability=QoSReliabilityPolicy.BEST_EFFORT,
-            history=QoSHistoryPolicy.KEEP_LAST,
-            depth=40
-        )
+        # Create a publisher for the Image topic without QoS profile
+        self.publisher_ = self.create_publisher(Image, 'ip_stream_image', 1)
         
-        # Create a publisher for the Image topic with the specified QoS profile
-        self.publisher_ = self.create_publisher(Image, 'ip_stream_image', qos_profile)
-        
-        # Create a timer to call timer_callback every 0.033 seconds (approximately 30 FPS)
+        # Create a timer to call timer_callback every 0.001 seconds (approximately 100 FPS)
         self.timer = self.create_timer(0.001, self.timer_callback)
         
         self.cap = cv2.VideoCapture(f'http://{ip}/video')  # Open the IP camera stream
